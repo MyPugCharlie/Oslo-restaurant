@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sampan — Asian food. Live music. Good nights. Oslo.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17120d;
+    --ink-2:#1d1710;
+    --panel:#241c15;
+    --panel-2:#2e2419;
+    --line: rgba(239,228,207,0.14);
+    --paper:#efe4cf;
+    --paper-dim:#c8b99c;
+    --amber:#e3a43d;
+    --amber-ink:#241c0c;
+    --jade:#5c8172;
+    --brick:#b1432f;
+    --radius: 2px;
+    --maxw: 1180px;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    line-height:0.92;
+    margin:0;
+    letter-spacing:0.2px;
+    color:var(--paper);
+  }
+
+  p{margin:0;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;}
+
+  .container{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:0;
+    background:var(--amber);
+    color:var(--amber-ink);
+    padding:10px 16px;
+    z-index:200;
+    font-weight:600;
+  }
+  .skip-link:focus{left:12px; top:12px;}
+
+  :focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 24px;
+    background:rgba(23,18,13,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+  .brand{
+    font-family:'Big Shoulders Display';
+    font-weight:900;
+    font-size:1.7rem;
+    letter-spacing:1px;
+    text-decoration:none;
+    color:var(--paper);
+  }
+  .brand-sub{
+    font-family:'IBM Plex Sans';
+    font-size:0.7rem;
+    letter-spacing:2px;
+    color:var(--amber);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--paper);
+    padding:8px 12px;
+    border-radius:var(--radius);
+    cursor:pointer;
+  }
+
+  #nav-list{
+    list-style:none;
+    display:flex;
+    gap:28px;
+    margin:0;
+    padding:0;
+    flex:1;
+    justify-content:center;
+  }
+  #nav-list a{
+    text-decoration:none;
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--paper-dim);
+    padding:6px 2px;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  #nav-list a:hover{ color:var(--paper); }
+  #nav-list a.active{ color:var(--paper); border-color:var(--amber); }
+
+  .cta-book{
+    background:var(--amber);
+    color:var(--amber-ink);
+    border:none;
+    padding:11px 20px;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.4px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .12s ease, background .15s ease;
+  }
+  .cta-book:hover{ background:#eeb35a; transform:translateY(-1px); }
+  .cta-ghost{
+    background:transparent;
+    border:1px solid var(--paper-dim);
+    color:var(--paper);
+    padding:11px 20px;
+    font-weight:600;
+    font-size:0.85rem;
+    letter-spacing:0.4px;
+    border-radius:var(--radius);
+    cursor:pointer;
+  }
+  .cta-ghost:hover{ border-color:var(--paper); }
+
+  main{ position:relative; z-index:2; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 24px 64px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(3rem, 7vw, 5.6rem);
+    text-transform:uppercase;
+  }
+  .hero h1 span{ display:block; }
+  .hero-lede{
+    margin-top:22px;
+    max-width:38ch;
+    font-size:1.15rem;
+    color:var(--paper-dim);
+  }
+  .hero-ctas{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .hero-art{
+    justify-self:end;
+  }
+
+  /* ---------- Ticker ---------- */
+  .ticker-wrap{
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    padding:12px 0;
+  }
+  .ticker{
+    display:flex;
+    width:max-content;
+    gap:48px;
+    animation:scroll-left 32s linear infinite;
+    white-space:nowrap;
+  }
+  @keyframes scroll-left{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .ticker span{
+    font-family:'Big Shoulders Display';
+    font-weight:700;
+    font-size:1rem;
+    letter-spacing:0.6px;
+    color:var(--paper-dim);
+  }
+  .ticker span em{ color:var(--amber); font-style:normal; }
+
+  /* ---------- Sections generic ---------- */
+  section.block{
+    padding:80px 24px;
+    border-bottom:1px solid var(--line);
+  }
+  .block-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .block-head h2{
+    font-size:clamp(2.1rem, 4vw, 3.1rem);
+    text-transform:uppercase;
+  }
+  .block-link{
+    text-decoration:none;
+    color:var(--amber);
+    font-weight:600;
+    font-size:0.95rem;
+    border-bottom:1px solid transparent;
+  }
+  .block-link:hover{ border-color:var(--amber); }
+
+  /* What's on cards */
+  .whats-on-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .event-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:22px;
+    border-radius:var(--radius);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .event-date{
+    font-size:0.78rem;
+    letter-spacing:1.2px;
+    color:var(--jade);
+    font-weight:600;
+    text-transform:uppercase;
+  }
+  .event-card h3{
+    font-size:1.5rem;
+    text-transform:uppercase;
+  }
+  .event-meta{
+    font-size:0.85rem;
+    color:var(--paper-dim);
+  }
+  .event-type-tag{
+    display:inline-block;
+    align-self:flex-start;
+    font-size:0.68rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:4px 9px;
+    border-radius:20px;
+    background:rgba(227,164,61,0.14);
+    color:var(--amber);
+  }
+  .event-type-tag.dj{ background:rgba(92,129,114,0.18); color:#95b8a6; }
+  .event-type-tag.special{ background:rgba(177,67,47,0.18); color:#e08a76; }
+
+  /* Food section */
+  .food-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .food-copy p{ color:var(--paper-dim); margin-top:16px; max-width:52ch; }
+  .food-tags{
+    margin-top:24px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .food-tags span{
+    border:1px solid var(--line);
+    padding:7px 14px;
+    border-radius:20px;
+    font-size:0.82rem;
+    color:var(--paper-dim);
+  }
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about-grid p{ color:var(--paper-dim); margin-top:18px; max-width:56ch; }
+  .pull-quote{
+    font-family:'Big Shoulders Display';
+    font-size:1.9rem;
+    font-weight:700;
+    color:var(--amber);
+    margin-top:24px;
+    line-height:1.1;
+    text-transform:uppercase;
+  }
+
+  /* Basement teaser (home) */
+  .basement-teaser{
+    background:linear-gradient(180deg, var(--ink-2), #0f0c08);
+  }
+  .basement-teaser-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .basement-teaser h2{ font-size:clamp(2.4rem,5vw,4rem); }
+  .basement-teaser .kicker{
+    color:var(--brick);
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-size:0.95rem;
+  }
+  .basement-teaser p{ color:var(--paper-dim); margin-top:16px; max-width:46ch; }
+
+  /* Gallery */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:140px;
+    gap:12px;
+  }
+  .gallery-grid > div{
+    border-radius:var(--radius);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .gallery-grid > div span{
+    position:absolute;
+    bottom:8px;
+    left:10px;
+    font-size:0.68rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:rgba(239,228,207,0.55);
+  }
+  .g1{ grid-column:span 2; grid-row:span 2; background:radial-gradient(circle at 30% 20%, #3a2a17, #1a1309); }
+  .g2{ background:radial-gradient(circle at 70% 70%, #3f281c, #16110c); }
+  .g3{ background:radial-gradient(circle at 50% 50%, #2c3a32, #141a17); }
+  .g4{ background:radial-gradient(circle at 20% 80%, #4a3418, #17110a); }
+  .g5{ background:radial-gradient(circle at 60% 30%, #402117, #150e0b); grid-column:span 2;}
+  .g6{ background:radial-gradient(circle at 40% 40%, #33261a, #130f0a); }
+
+  /* Location */
+  .location-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .hours-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:14px;
+    font-size:0.95rem;
+  }
+  .hours-table td{
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+    color:var(--paper-dim);
+  }
+  .hours-table td:last-child{ text-align:right; color:var(--paper); font-weight:600;}
+  .map-block{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    aspect-ratio:4/3;
+    background:
+      repeating-linear-gradient(0deg, rgba(239,228,207,0.06) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(90deg, rgba(239,228,207,0.06) 0 1px, transparent 1px 34px),
+      #1c1610;
+    position:relative;
+  }
+  .map-pin{
+    position:absolute;
+    top:44%;
+    left:52%;
+  }
+
+  footer{
+    padding:56px 24px 32px;
+    background:var(--ink-2);
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:32px;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+  footer h4{ font-size:0.85rem; letter-spacing:1px; color:var(--paper-dim); text-transform:uppercase; font-weight:600; margin-bottom:14px; font-family:'IBM Plex Sans';}
+  footer a{ text-decoration:none; }
+  footer .foot-links{ display:flex; flex-direction:column; gap:8px; }
+  footer .foot-links a{ color:var(--paper-dim); font-size:0.92rem; }
+  footer .foot-links a:hover{ color:var(--paper); }
+  .foot-bottom{
+    max-width:var(--maxw);
+    margin:40px auto 0;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:0.8rem;
+    color:var(--paper-dim);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* ---------- Views ---------- */
+  .view[hidden]{ display:none; }
+  .page-hero{
+    padding:64px 24px 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .page-hero .eyebrow{
+    color:var(--amber);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:0.85rem;
+  }
+  .page-hero h1{
+    font-size:clamp(2.6rem,6vw,4.6rem);
+    text-transform:uppercase;
+    margin-top:10px;
+  }
+  .page-hero p{ color:var(--paper-dim); margin-top:14px; max-width:60ch; font-size:1.05rem;}
+
+  /* Program filters */
+  .filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .filter-btn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--paper-dim);
+    padding:9px 16px;
+    border-radius:20px;
+    font-size:0.82rem;
+    letter-spacing:0.6px;
+    text-transform:uppercase;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .filter-btn[aria-pressed="true"]{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:var(--amber-ink);
+  }
+
+  .program-list{ display:flex; flex-direction:column; gap:0; }
+  .program-row{
+    border-bottom:1px solid var(--line);
+    padding:24px 0;
+  }
+  .program-row-head{
+    display:grid;
+    grid-template-columns:150px 1fr auto auto;
+    align-items:center;
+    gap:20px;
+    cursor:pointer;
+    background:none;
+    border:none;
+    width:100%;
+    text-align:left;
+    color:inherit;
+    padding:0;
+  }
+  .program-row-head .pd{
+    font-family:'Big Shoulders Display';
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--jade);
+    text-transform:uppercase;
+  }
+  .program-row-head h3{
+    font-size:1.7rem;
+    text-transform:uppercase;
+  }
+  .program-row-head .ptime{
+    color:var(--paper-dim);
+    font-size:0.9rem;
+    white-space:nowrap;
+  }
+  .row-caret{
+    color:var(--paper-dim);
+    font-size:1.3rem;
+    transition:transform .15s ease;
+  }
+  .program-row[data-open="true"] .row-caret{ transform:rotate(45deg); }
+  .program-detail{
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .25s ease;
+  }
+  .program-row[data-open="true"] .program-detail{ max-height:280px; }
+  .program-detail-inner{
+    padding:18px 0 6px;
+    display:grid;
+    grid-template-columns:1fr 220px;
+    gap:24px;
+  }
+  .program-detail-inner p{ color:var(--paper-dim); max-width:60ch; }
+  .program-detail-inner .practical{ font-size:0.88rem; }
+  .program-detail-inner .practical div{ padding:5px 0; border-bottom:1px dashed var(--line); color:var(--paper-dim); display:flex; justify-content:space-between; gap:12px;}
+  .program-detail-inner .practical div b{ color:var(--paper); font-weight:600; }
+
+  /* Menu */
+  .menu-season{
+    display:inline-block;
+    border:1px solid var(--amber);
+    color:var(--amber);
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:0.78rem;
+    letter-spacing:1px;
+    font-weight:700;
+    text-transform:uppercase;
+    margin-top:12px;
+  }
+  .menu-cat{ margin-bottom:52px; }
+  .menu-cat h2{
+    font-size:1.9rem;
+    text-transform:uppercase;
+    color:var(--amber);
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+    margin-bottom:20px;
+  }
+  .menu-item{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:12px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .menu-item-name{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .menu-item-name h4{
+    font-family:'IBM Plex Sans';
+    font-weight:600;
+    font-size:1.08rem;
+  }
+  .menu-item p{ color:var(--paper-dim); font-size:0.92rem; margin-top:4px; max-width:56ch;}
+  .menu-item .price{
+    font-family:'Big Shoulders Display';
+    font-weight:700;
+    font-size:1.2rem;
+    color:var(--paper);
+    white-space:nowrap;
+  }
+  .diet-pill{
+    font-size:0.65rem;
+    font-weight:700;
+    letter-spacing:0.5px;
+    padding:2px 7px;
+    border-radius:20px;
+    border:1px solid var(--jade);
+    color:#9fc2b1;
+  }
+  .diet-pill.spicy{ border-color:var(--brick); color:#e0937f; }
+  .drinks-cols{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .drinks-cols h5{
+    font-family:'Big Shoulders Display';
+    font-size:1.1rem;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:10px;
+  }
+  .drinks-cols ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; font-size:0.92rem; color:var(--paper-dim);}
+  .cms-note{
+    margin-top:44px;
+    border-top:1px solid var(--line);
+    padding-top:20px;
+    font-size:0.85rem;
+    color:var(--paper-dim);
+    font-style:italic;
+  }
+
+  /* Basement page */
+  .basement-hero{
+    background:linear-gradient(180deg,#100c08,#1a130c);
+    padding:80px 24px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+  .basement-hero .kicker{ color:var(--brick); font-weight:700; letter-spacing:1px; text-transform:uppercase;}
+  .basement-hero h1{ font-size:clamp(3rem,7vw,5.4rem); text-transform:uppercase; margin-top:12px;}
+  .basement-hero p{ color:var(--paper-dim); margin-top:16px; max-width:56ch; font-size:1.1rem;}
+  .genre-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px;}
+  .genre-tags span{
+    border:1px solid var(--brick);
+    color:#e0937f;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:0.8rem;
+    font-weight:600;
+  }
+  .past-nights-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .past-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+    background:var(--panel);
+    opacity:0.85;
+  }
+  .past-card .pd{ font-size:0.75rem; color:var(--paper-dim); letter-spacing:1px; text-transform:uppercase;}
+  .past-card h4{ font-family:'Big Shoulders Display'; font-size:1.2rem; margin-top:6px; text-transform:uppercase;}
+
+  /* Modal */
+  .modal{
+    position:fixed;
+    inset:0;
+    z-index:300;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .modal[hidden]{ display:none; }
+  .modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(10,8,6,0.72);
+  }
+  .modal-card{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:32px;
+    max-width:440px;
+    width:100%;
+    max-height:90vh;
+    overflow:auto;
+  }
+  .modal-card h2{ font-size:2rem; text-transform:uppercase; }
+  .modal-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    background:none;
+    border:none;
+    color:var(--paper-dim);
+    font-size:1.4rem;
+    cursor:pointer;
+    line-height:1;
+  }
+  .modal-close:hover{ color:var(--paper); }
+  .form-row{ margin-top:16px; display:flex; flex-direction:column; gap:6px; }
+  .form-row label{ font-size:0.82rem; color:var(--paper-dim); font-weight:600; }
+  .form-row input, .form-row select{
+    background:var(--ink);
+    border:1px solid var(--line);
+    color:var(--paper);
+    padding:11px 12px;
+    border-radius:var(--radius);
+    font-family:inherit;
+    font-size:0.95rem;
+  }
+  .form-row-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .modal-submit{
+    margin-top:22px;
+    width:100%;
+    background:var(--amber);
+    color:var(--amber-ink);
+    border:none;
+    padding:13px;
+    font-weight:700;
+    border-radius:var(--radius);
+    cursor:pointer;
+    font-size:0.95rem;
+  }
+  .booking-success{ text-align:center; }
+  .booking-success .icon{ font-size:2.4rem; margin-bottom:12px; }
+  .booking-success p{ color:var(--paper-dim); margin-top:10px; }
+
+  /* Responsive */
+  @media (max-width:900px){
+    #nav-list{
+      position:fixed;
+      top:64px; left:0; right:0;
+      background:var(--ink);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      padding:16px 24px;
+      gap:14px;
+      display:none;
+    }
+    #nav-list.open{ display:flex; }
+    .nav-toggle{ display:inline-block; }
+    .cta-book{ padding:9px 14px; font-size:0.78rem; }
+    .brand a{ font-size:1.4rem; }
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-art{ justify-self:start; opacity:0.6; }
+    .whats-on-grid{ grid-template-columns:1fr; }
+    .food-grid, .about-grid, .basement-teaser-inner, .location-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .g1, .g5{ grid-column:span 2; }
+    .footer-grid{ grid-template-columns:1fr; }
+    .program-row-head{ grid-template-columns:1fr; row-gap:6px; }
+    .program-detail-inner{ grid-template-columns:1fr; }
+    .drinks-cols{ grid-template-columns:repeat(2,1fr); }
+    .past-nights-grid{ grid-template-columns:repeat(2,1fr); }
+    .form-row-2{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <a class="brand" href="#home">
+    SAMPAN<span class="brand-sub">Oslo</span>
+  </a>
+  <nav class="main-nav" aria-label="Main">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+    <ul id="nav-list">
+      <li><a href="#home" data-route="home">Home</a></li>
+      <li><a href="#program" data-route="program">Program</a></li>
+      <li><a href="#menu" data-route="menu">Menu</a></li>
+      <li><a href="#basement" data-route="basement">Basement</a></li>
+    </ul>
+  </nav>
+  <button class="cta-book" data-open-book>Book a table</button>
+</header>
+
+<main id="main">
+
+  <!-- ================= HOME ================= -->
+  <section id="view-home" class="view">
+
+    <div class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1><span>Asian food.</span><span>Live music.</span><span>Good nights.</span></h1>
+          <p class="hero-lede">A pub and kitchen upstairs, a music room below. Come for the food, stay for whoever's playing in the Hull.</p>
+          <div class="hero-ctas">
+            <button class="cta-book" data-open-book>Book a table</button>
+            <a class="cta-ghost" href="#program">See the program</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg width="360" height="300" viewBox="0 0 360 300" fill="none">
+            <path d="M40 210 Q180 160 320 210 L300 240 Q180 200 60 240 Z" stroke="#e3a43d" stroke-width="2" fill="rgba(227,164,61,0.06)"/>
+            <path d="M180 210 L180 60" stroke="#c8b99c" stroke-width="1.5"/>
+            <path d="M180 70 L250 95 L180 118 Z" stroke="#c8b99c" stroke-width="1.5" fill="none"/>
+            <g stroke="#5c8172" stroke-width="2" stroke-linecap="round">
+              <path d="M40 260 q10 -14 20 0 t20 0 t20 0 t20 0"/>
+              <path d="M180 270 q10 -18 20 0 t20 0 t20 0 t20 0"/>
+            </g>
+            <circle cx="300" cy="70" r="18" stroke="#e3a43d" stroke-width="2" fill="rgba(227,164,61,0.1)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="ticker-wrap" aria-label="Upcoming events ticker">
+      <div class="ticker" id="tickerTrack"></div>
+    </div>
+
+    <section class="block" aria-labelledby="whats-on-h">
+      <div class="container">
+        <div class="block-head">
+          <h2 id="whats-on-h">What's on</h2>
+          <a class="block-link" href="#program">View full program →</a>
+        </div>
+        <div class="whats-on-grid" id="homeEvents"></div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="food-h">
+      <div class="container food-grid">
+        <div aria-hidden="true">
+          <svg width="100%" height="260" viewBox="0 0 400 260" fill="none">
+            <ellipse cx="200" cy="190" rx="150" ry="30" fill="rgba(227,164,61,0.08)" stroke="#e3a43d" stroke-width="1.5"/>
+            <path d="M60 190 Q90 100 200 100 Q310 100 340 190" stroke="#c8b99c" stroke-width="1.5" fill="none"/>
+            <g stroke="#e3a43d" stroke-width="2" stroke-linecap="round">
+              <path d="M150 60 q6 -20 0 -30"/>
+              <path d="M200 55 q6 -20 0 -30"/>
+              <path d="M250 60 q6 -20 0 -30"/>
+            </g>
+          </svg>
+        </div>
+        <div class="food-copy">
+          <h2 id="food-h">Food for the table</h2>
+          <p>Sharing plates built around what's fresh in Oslo and what we grew up eating. Bao and skewers from the wok, whole fish off the grill, rice bowls that land in the middle of the table, not in front of one person.</p>
+          <div class="food-tags">
+            <span>Small plates</span><span>Mains</span><span>Sides</span><span>Dessert</span><span>Drinks</span>
+          </div>
+          <div class="hero-ctas" style="margin-top:24px;">
+            <a class="cta-ghost" href="#menu">See seasonal menu →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="about-h">
+      <div class="container about-grid">
+        <div>
+          <h2 id="about-h">This is Sampan</h2>
+          <p>Named for the flat-bottomed boats that carry food, drink and people through the canals and harbours of East and Southeast Asia — Sampan is Oslo's version of the same idea. Kitchen and bar on deck. Music in the hull below.</p>
+          <p>We're not a fine-dining room. We're closer to the places that stay open late because the night isn't finished yet.</p>
+          <p class="pull-quote">Come for dinner.<br>Stay for the music.</p>
+        </div>
+        <div aria-hidden="true">
+          <svg width="100%" height="320" viewBox="0 0 420 320" fill="none">
+            <rect x="40" y="40" width="340" height="240" rx="4" stroke="#3a2d1f" stroke-width="1"/>
+            <path d="M60 220 L360 220" stroke="#e3a43d" stroke-width="1.5" stroke-dasharray="2 6"/>
+            <path d="M60 160 L360 160" stroke="#5c8172" stroke-width="1" stroke-dasharray="2 6"/>
+            <circle cx="130" cy="100" r="34" stroke="#e3a43d" stroke-width="2" fill="none"/>
+            <circle cx="290" cy="100" r="20" stroke="#c8b99c" stroke-width="1.5" fill="none"/>
+            <path d="M90 250 q120 -40 240 0" stroke="#b1432f" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="block basement-teaser" aria-labelledby="basement-teaser-h">
+      <div class="container basement-teaser-inner">
+        <div>
+          <p class="kicker">The Hull</p>
+          <h2 id="basement-teaser-h">Downstairs, the night changes.</h2>
+          <p>Below the restaurant, the Hull runs live sets, DJs and the odd surprise until close. Same crowd, lower ceiling, louder night.</p>
+          <div class="hero-ctas" style="margin-top:24px;">
+            <a class="cta-ghost" href="#basement">Explore the basement →</a>
+          </div>
+        </div>
+        <div aria-hidden="true">
+          <svg width="100%" height="280" viewBox="0 0 400 280" fill="none">
+            <path d="M50 60 L350 60 L350 240 L50 240 Z" stroke="#3a2d1f"/>
+            <path d="M50 150 L350 150" stroke="#b1432f" stroke-width="1.5"/>
+            <g stroke="#e0937f" stroke-width="2" stroke-linecap="round">
+              <path d="M90 220 v-40"/><path d="M120 220 v-60"/><path d="M150 220 v-25"/>
+              <path d="M180 220 v-50"/><path d="M210 220 v-30"/><path d="M240 220 v-55"/>
+              <path d="M270 220 v-20"/><path d="M300 220 v-45"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="gallery-h">
+      <div class="container">
+        <div class="block-head">
+          <h2 id="gallery-h">On any given night</h2>
+        </div>
+        <div class="gallery-grid" aria-hidden="true">
+          <div class="g1"><span>The Hull, late set</span></div>
+          <div class="g2"><span>Bar</span></div>
+          <div class="g3"><span>Kitchen pass</span></div>
+          <div class="g4"><span>Wok station</span></div>
+          <div class="g5"><span>Sunday soundcheck</span></div>
+          <div class="g6"><span>Doors open</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="come-by-h" style="border-bottom:none;">
+      <div class="container location-grid">
+        <div>
+          <h2 id="come-by-h">Come by</h2>
+          <p style="color:var(--paper-dim); margin-top:14px;">Skippergata 14, 0154 Oslo</p>
+          <table class="hours-table">
+            <tr><td>Monday</td><td>Closed</td></tr>
+            <tr><td>Tuesday</td><td>17:00 – 23:00</td></tr>
+            <tr><td>Wednesday</td><td>17:00 – 23:00</td></tr>
+            <tr><td>Thursday</td><td>17:00 – 01:00</td></tr>
+            <tr><td>Friday</td><td>17:00 – 03:00</td></tr>
+            <tr><td>Saturday</td><td>17:00 – 03:00</td></tr>
+            <tr><td>Sunday</td><td>Closed</td></tr>
+          </table>
+          <div class="hero-ctas" style="margin-top:24px;">
+            <a class="cta-ghost" href="https://www.google.com/maps/search/Skippergata+14+Oslo" target="_blank" rel="noopener">Get directions</a>
+            <button class="cta-book" data-open-book>Book a table</button>
+          </div>
+        </div>
+        <div class="map-block" aria-hidden="true">
+          <svg class="map-pin" width="30" height="40" viewBox="0 0 24 32" fill="none">
+            <path d="M12 0C5 0 0 5 0 12c0 9 12 20 12 20s12-11 12-20C24 5 19 0 12 0z" fill="#e3a43d"/>
+            <circle cx="12" cy="12" r="5" fill="#17120d"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- ================= PROGRAM ================= -->
+  <section id="view-program" class="view" hidden>
+    <div class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Program</p>
+        <h1>Live music, DJs and nights in the basement.</h1>
+        <p>Every show starts upstairs with dinner and moves down when the doors open. Come early if you want a table first.</p>
+      </div>
+    </div>
+    <section class="block" style="border-bottom:none;">
+      <div class="container">
+        <div class="filters" role="group" aria-label="Filter events by type">
+          <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="live" aria-pressed="false">Live music</button>
+          <button class="filter-btn" data-filter="dj" aria-pressed="false">DJ</button>
+          <button class="filter-btn" data-filter="special" aria-pressed="false">Special events</button>
+        </div>
+        <div class="program-list" id="programList"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= MENU ================= -->
+  <section id="view-menu" class="view" hidden>
+    <div class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Menu</p>
+        <h1>Seasonal menu</h1>
+        <span class="menu-season">Autumn / Winter 2026</span>
+        <p>Everything is made to share. Order a few small plates, one or two mains for the table, and see where the night goes.</p>
+      </div>
+    </div>
+    <section class="block" style="border-bottom:none;">
+      <div class="container">
+
+        <div class="menu-cat">
+          <h2>Small plates</h2>
+          <div class="menu-item"><div class="menu-item-name"><h4>Steamed bao, pork belly, pickled mustard greens</h4></div><div class="price">95</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Salt and pepper squid, chili, lime</h4><span class="diet-pill spicy">Spicy</span></div><div class="price">110</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Charred aubergine, miso, sesame</h4><span class="diet-pill">Vegan</span></div><div class="price">89</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Prawn toast, nam jim, coriander</h4><span class="diet-pill spicy">Shellfish</span></div><div class="price">105</div></div>
+        </div>
+
+        <div class="menu-cat">
+          <h2>Mains</h2>
+          <div class="menu-item"><div class="menu-item-name"><h4>Fjord char, ginger scallion oil, jasmine rice</h4></div><div class="price">245</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Wok-fired lamb ribs, black bean, spring onion</h4></div><div class="price">265</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Mushroom laksa, coconut broth, egg noodle</h4><span class="diet-pill">Vegetarian</span></div><div class="price">195</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Whole grilled trout, tamarind glaze</h4></div><div class="price">285</div></div>
+        </div>
+
+        <div class="menu-cat">
+          <h2>Sides</h2>
+          <div class="menu-item"><div class="menu-item-name"><h4>Jasmine rice</h4></div><div class="price">45</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Stir-fried greens, garlic</h4></div><div class="price">65</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Kimchi, daikon</h4><span class="diet-pill spicy">Spicy · Vegan</span></div><div class="price">55</div></div>
+        </div>
+
+        <div class="menu-cat">
+          <h2>Dessert</h2>
+          <div class="menu-item"><div class="menu-item-name"><h4>Black sesame soft serve</h4></div><div class="price">85</div></div>
+          <div class="menu-item"><div class="menu-item-name"><h4>Coconut sticky rice, mango</h4><span class="diet-pill">Vegan · GF</span></div><div class="price">95</div></div>
+        </div>
+
+        <div class="menu-cat" style="margin-bottom:0;">
+          <h2>Drinks</h2>
+          <div class="drinks-cols">
+            <div><h5>Beer</h5><ul><li>Local lager</li><li>Yuzu sour beer</li></ul></div>
+            <div><h5>Wine</h5><ul><li>Natural white</li><li>Orange wine</li><li>House red</li></ul></div>
+            <div><h5>Cocktails</h5><ul><li>Sampan sour</li><li>Basement boilermaker</li><li>Lychee martini</li></ul></div>
+            <div><h5>Non-alcoholic</h5><ul><li>Ginger-lemongrass soda</li><li>Jasmine iced tea</li></ul></div>
+          </div>
+        </div>
+
+        <p class="cms-note">Menu, prices and availability change with the seasons — what's on the table tonight may differ slightly from this list.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= BASEMENT ================= -->
+  <section id="view-basement" class="view" hidden>
+    <div class="basement-hero">
+      <div class="container">
+        <p class="kicker">The Hull</p>
+        <h1>Downstairs, the night changes.</h1>
+        <p>The Hull is Sampan's basement room — live music, DJs and late nights that run past when the kitchen closes. It's where the regulars end up, whatever they came in for.</p>
+        <div class="genre-tags">
+          <span>Live</span><span>DJ</span><span>Indie</span><span>Electronic</span><span>Experimental</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="block">
+      <div class="container">
+        <div class="block-head">
+          <h2>This week downstairs</h2>
+          <a class="block-link" href="#program">Full program →</a>
+        </div>
+        <div class="whats-on-grid" id="basementEvents"></div>
+      </div>
+    </section>
+
+    <section class="block" style="border-bottom:none;">
+      <div class="container">
+        <div class="block-head">
+          <h2>Past nights</h2>
+        </div>
+        <div class="past-nights-grid" id="pastNights"></div>
+      </div>
+    </section>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Sampan</h4>
+      <p style="color:var(--paper-dim); max-width:34ch;">Skippergata 14, 0154 Oslo. Asian food, cold drinks and live music, upstairs and down.</p>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <div class="foot-links">
+        <a href="#program">Program</a>
+        <a href="#menu">Menu</a>
+        <a href="#basement">Basement</a>
+        <a href="#" data-open-book>Book a table</a>
+      </div>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <div class="foot-links">
+        <a href="#" onclick="return false;">Instagram</a>
+        <a href="#" onclick="return false;">Facebook</a>
+        <a href="tel:+4722000000">+47 22 00 00 00</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Sampan Oslo</span>
+    <span>Tue–Sat, from 17:00. Basement doors follow the program.</span>
+  </div>
+</footer>
+
+<!-- Booking modal -->
+<div class="modal" id="bookModal" hidden role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+  <div class="modal-backdrop" data-close-book></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close-book aria-label="Close">&times;</button>
+    <div id="bookFormWrap">
+      <h2 id="bookModalTitle">Book a table</h2>
+      <p style="color:var(--paper-dim); margin-top:8px; font-size:0.9rem;">We'll confirm by phone within a day. For same-night tables, call us directly.</p>
+      <form id="bookForm">
+        <div class="form-row">
+          <label for="bName">Name</label>
+          <input id="bName" type="text" required>
+        </div>
+        <div class="form-row-2">
+          <div class="form-row">
+            <label for="bDate">Date</label>
+            <input id="bDate" type="date" required>
+          </div>
+          <div class="form-row">
+            <label for="bTime">Time</label>
+            <input id="bTime" type="time" required>
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-row">
+            <label for="bParty">Party size</label>
+            <input id="bParty" type="number" min="1" max="20" value="2" required>
+          </div>
+          <div class="form-row">
+            <label for="bPhone">Phone</label>
+            <input id="bPhone" type="tel" required>
+          </div>
+        </div>
+        <button class="modal-submit" type="submit">Request table</button>
+      </form>
+    </div>
+    <div id="bookSuccessWrap" class="booking-success" hidden>
+      <div class="icon" aria-hidden="true">✓</div>
+      <h2>Request sent</h2>
+      <p>We'll call to confirm your table shortly. See you at Sampan.</p>
+      <button class="cta-ghost" style="margin-top:18px;" data-close-book>Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var EVENTS = [
+    {id:'e1', date:'2026-09-18', day:'Friday', dateLabel:'18 September', title:'Night Tide', type:'live', typeLabel:'Live music', doors:'20:00', start:'21:30', room:'Main room', desc:"Four-piece guitar band from Bergen, somewhere between surf and slowcore. Their first Oslo show since spring."},
+    {id:'e2', date:'2026-09-19', day:'Saturday', dateLabel:'19 September', title:'DJ Kūru', type:'dj', typeLabel:'DJ', doors:'22:00', start:'22:30', room:'The Hull', desc:"Deep, warm selectors' set — disco and boogie into the small hours. No cover before 23:00."},
+    {id:'e3', date:'2026-09-24', day:'Thursday', dateLabel:'24 September', title:'Paper Boats', type:'live', typeLabel:'Live music', doors:'19:30', start:'20:30', room:'Main room', desc:"Local three-piece playing songs built for a room, not a festival field. Come for dinner first — tables free up fast once doors open."},
+    {id:'e4', date:'2026-09-25', day:'Friday', dateLabel:'25 September', title:'Monsoon Season', type:'special', typeLabel:'Special event', doors:'20:00', start:'21:00', room:'The Hull', desc:"Record release night for the Oslo four-piece. Full band, extended set, limited vinyl at the door."},
+    {id:'e5', date:'2026-09-26', day:'Saturday', dateLabel:'26 September', title:'Salt & Static', type:'live', typeLabel:'Live music', doors:'20:00', start:'21:00', room:'Main room', desc:"Noisy, danceable two-piece. Not background music — come ready to stand near the stage."},
+    {id:'e6', date:'2026-09-30', day:'Wednesday', dateLabel:'30 September', title:'Late Bloom', type:'dj', typeLabel:'DJ', doors:'21:00', start:'21:30', room:'The Hull', desc:"Midweek session — house and garage, low lights, no rush."}
+  ];
+
+  var PAST = [
+    {date:'12 SEP', title:'Harbor Light'},
+    {date:'6 SEP', title:'DJ Kūru'},
+    {date:'29 AUG', title:'Concrete Bloom'},
+    {date:'22 AUG', title:'Salt & Static'}
+  ];
+
+  function typeTagClass(t){ return t==='dj' ? 'dj' : (t==='special' ? 'special' : ''); }
+
+  function eventCardHTML(ev){
+    return '<div class="event-card">'
+      + '<span class="event-date">'+ev.day+', '+ev.dateLabel+'</span>'
+      + '<h3>'+ev.title+'</h3>'
+      + '<span class="event-type-tag '+typeTagClass(ev.type)+'">'+ev.typeLabel+'</span>'
+      + '<p class="event-meta">Doors '+ev.doors+' · '+ (ev.type==='live' ? 'Live '+ev.start : 'From '+ev.start) +' · '+ev.room+'</p>'
+      + '</div>';
+  }
+
+  function renderHome(){
+    var next3 = EVENTS.slice(0,3);
+    document.getElementById('homeEvents').innerHTML = next3.map(eventCardHTML).join('');
+
+    var track = document.getElementById('tickerTrack');
+    var items = EVENTS.map(function(ev){
+      return '<span>'+ev.day.toUpperCase()+' '+ev.dateLabel.toUpperCase()+' — <em>'+ev.title+'</em> — '+ev.typeLabel+'</span>';
+    }).join('');
+    track.innerHTML = items + items; // duplicate for seamless loop
+  }
+
+  function renderBasement(){
+    var hull = EVENTS.filter(function(ev){ return ev.room === 'The Hull'; });
+    document.getElementById('basementEvents').innerHTML = hull.map(eventCardHTML).join('');
+    document.getElementById('pastNights').innerHTML = PAST.map(function(p){
+      return '<div class="past-card"><div class="pd">'+p.date+'</div><h4>'+p.title+'</h4></div>';
+    }).join('');
+  }
+
+  function programRowHTML(ev){
+    return '<div class="program-row" data-type="'+ev.type+'" data-open="false" data-id="'+ev.id+'">'
+      + '<button class="program-row-head" aria-expanded="false">'
+        + '<span class="pd">'+ev.day.slice(0,3).toUpperCase()+' '+ev.dateLabel+'</span>'
+        + '<h3>'+ev.title+'</h3>'
+        + '<span class="event-type-tag '+typeTagClass(ev.type)+'">'+ev.typeLabel+'</span>'
+        + '<span class="ptime">'+ev.room+'</span>'
+        + '<span class="row-caret" aria-hidden="true">+</span>'
+      + '</button>'
+      + '<div class="program-detail"><div class="program-detail-inner">'
+        + '<div><p>'+ev.desc+'</p><p style="margin-top:14px;"><em>Come early for dinner before the show.</em></p></div>'
+        + '<div class="practical">'
+          + '<div><span>Date</span><b>'+ev.day+', '+ev.dateLabel+'</b></div>'
+          + '<div><span>Doors</span><b>'+ev.doors+'</b></div>'
+          + '<div><span>Start</span><b>'+ev.start+'</b></div>'
+          + '<div><span>Location</span><b>'+ev.room+'</b></div>'
+        + '</div>'
+      + '</div></div>'
+    + '</div>';
+  }
+
+  function renderProgram(filter){
+    filter = filter || 'all';
+    var list = filter === 'all' ? EVENTS : EVENTS.filter(function(e){ return e.type === filter; });
+    document.getElementById('programList').innerHTML = list.map(programRowHTML).join('');
+    document.querySelectorAll('.program-row-head').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var row = btn.closest('.program-row');
+        var open = row.getAttribute('data-open') === 'true';
+        row.setAttribute('data-open', open ? 'false' : 'true');
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+    });
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      btn.setAttribute('aria-pressed','true');
+      renderProgram(btn.dataset.filter);
+    });
+  });
+
+  renderHome();
+  renderBasement();
+  renderProgram('all');
+
+  // Routing
+  function route(){
+    var hash = location.hash.replace('#','') || 'home';
+    var valid = ['home','program','menu','basement'];
+    if (valid.indexOf(hash) === -1) hash = 'home';
+    document.querySelectorAll('.view').forEach(function(v){
+      v.hidden = v.id !== ('view-' + hash);
+    });
+    document.querySelectorAll('#nav-list a').forEach(function(a){
+      a.classList.toggle('active', a.dataset.route === hash);
+    });
+    document.getElementById('nav-list').classList.remove('open');
+    document.getElementById('navToggle').setAttribute('aria-expanded','false');
+    window.scrollTo({top:0});
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  // Mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var navList = document.getElementById('nav-list');
+  navToggle.addEventListener('click', function(){
+    var open = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // Booking modal
+  var modal = document.getElementById('bookModal');
+  function openModal(){
+    modal.hidden = false;
+    document.getElementById('bookFormWrap').hidden = false;
+    document.getElementById('bookSuccessWrap').hidden = true;
+    document.getElementById('bookForm').reset();
+    document.getElementById('bName').focus();
+  }
+  function closeModal(){ modal.hidden = true; }
+  document.querySelectorAll('[data-open-book]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+  });
+  document.querySelectorAll('[data-close-book]').forEach(function(el){
+    el.addEventListener('click', closeModal);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+  document.getElementById('bookForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('bookFormWrap').hidden = true;
+    document.getElementById('bookSuccessWrap').hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
